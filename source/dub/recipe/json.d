@@ -214,6 +214,7 @@ private void parseJson(ref BuildSettingsTemplate bs, Json json, string package_n
 			case "debugVersions": bs.debugVersions[suffix] = deserializeJson!(string[])(value); break;
 			case "importPaths": bs.importPaths[suffix] = deserializeJson!(string[])(value); break;
 			case "stringImportPaths": bs.stringImportPaths[suffix] = deserializeJson!(string[])(value); break;
+			case "stringImportRootPaths": bs.stringImportRootPaths[suffix] = deserializeJson!(string[])(value); break;
 			case "preGenerateCommands": bs.preGenerateCommands[suffix] = deserializeJson!(string[])(value); break;
 			case "postGenerateCommands": bs.postGenerateCommands[suffix] = deserializeJson!(string[])(value); break;
 			case "preBuildCommands": bs.preBuildCommands[suffix] = deserializeJson!(string[])(value); break;

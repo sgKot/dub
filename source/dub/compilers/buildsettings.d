@@ -11,7 +11,9 @@ import dub.internal.vibecompat.inet.path;
 
 import std.array : array;
 import std.algorithm : filter;
-import std.path : globMatch;
+import std.path : globMatch, absolutePath;
+import std.file : dirEntries, SpanMode, isDir;
+
 
 
 /// BuildPlatform specific settings, like needed libraries or additional
@@ -31,6 +33,7 @@ struct BuildSettings {
 	string[] debugVersions;
 	string[] importPaths;
 	string[] stringImportPaths;
+	string[] stringImportRootPaths;
 	string[] importFiles;
 	string[] stringImportFiles;
 	string[] preGenerateCommands;
@@ -86,6 +89,19 @@ struct BuildSettings {
 	void addDebugVersions(in string[] value...) { add(debugVersions, value); }
 	void addImportPaths(in string[] value...) { add(importPaths, value); }
 	void addStringImportPaths(in string[] value...) { add(stringImportPaths, value); }
+	void addStringImportRootPaths(in string[] value...) {
+		string[] buf;
+		foreach (v; value) {
+			buf ~= value;
+			foreach (string name; dirEntries(v, SpanMode.depth))
+			{
+				if (isDir(name))
+					buf ~= name;
+			}
+		}
+		add(stringImportRootPaths, buf);
+		add(stringImportPaths, buf);
+	}
 	void prependStringImportPaths(in string[] value...) { prepend(stringImportPaths, value); }
 	void addImportFiles(in string[] value...) { add(importFiles, value); }
 	void removeImportFiles(in string[] value...) { removePaths(importFiles, value); }

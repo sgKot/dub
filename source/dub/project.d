@@ -799,6 +799,7 @@ void processVars(ref BuildSettings dst, in Project project, in Package pack, Bui
 	dst.addDebugVersions(processVars(project, pack, settings.debugVersions));
 	dst.addImportPaths(processVars(project, pack, settings.importPaths, true));
 	dst.addStringImportPaths(processVars(project, pack, settings.stringImportPaths, true));
+	dst.addStringImportRootPaths(processVars(project, pack, settings.stringImportRootPaths, true));
 	dst.addPreGenerateCommands(processVars(project, pack, settings.preGenerateCommands));
 	dst.addPostGenerateCommands(processVars(project, pack, settings.postGenerateCommands));
 	dst.addPreBuildCommands(processVars(project, pack, settings.preBuildCommands));

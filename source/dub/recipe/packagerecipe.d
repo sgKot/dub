@@ -150,6 +150,7 @@ struct BuildSettingsTemplate {
 	string[][string] debugVersions;
 	string[][string] importPaths;
 	string[][string] stringImportPaths;
+	string[][string] stringImportRootPaths;
 	string[][string] preGenerateCommands;
 	string[][string] postGenerateCommands;
 	string[][string] preBuildCommands;
@@ -214,6 +215,7 @@ struct BuildSettingsTemplate {
 		getPlatformSetting!("debugVersions", "addDebugVersions")(dst, platform);
 		getPlatformSetting!("importPaths", "addImportPaths")(dst, platform);
 		getPlatformSetting!("stringImportPaths", "addStringImportPaths")(dst, platform);
+		getPlatformSetting!("stringImportRootPaths", "addStringImportRootPaths")(dst, platform);
 		getPlatformSetting!("preGenerateCommands", "addPreGenerateCommands")(dst, platform);
 		getPlatformSetting!("postGenerateCommands", "addPostGenerateCommands")(dst, platform);
 		getPlatformSetting!("preBuildCommands", "addPreBuildCommands")(dst, platform);
